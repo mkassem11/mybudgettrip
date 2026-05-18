@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
-const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
 export interface PlannerInput {
   destination: string;
   budget: number;      // USD per day
@@ -64,6 +62,8 @@ export async function POST(req: NextRequest) {
     if (!process.env.OPENAI_API_KEY) {
       return NextResponse.json({ error: "AI planner not configured" }, { status: 503 });
     }
+
+    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
     const completion = await client.chat.completions.create({
       model: "gpt-4o-mini",
