@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MapPin, Filter } from "lucide-react";
 import { destinations } from "@/lib/destinations";
@@ -75,26 +76,20 @@ export default function DestinationsPage() {
               className="group rounded-2xl overflow-hidden border transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl block"
               style={{ background: "var(--color-surface)", borderColor: "var(--color-border)" }}
             >
-              {/* Visual header */}
-              <div
-                className="h-52 relative flex items-end p-5"
-                style={{
-                  background: `linear-gradient(160deg, oklch(20% 0.04 ${72 + i * 30}) 0%, oklch(12% 0.02 252) 100%)`,
-                }}
-              >
-                <div>
-                  <span className="text-4xl block mb-2">{dest.emoji}</span>
+              {/* Photo header */}
+              <div className="h-52 relative overflow-hidden">
+                <Image
+                  src={dest.coverImage}
+                  alt={dest.name}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 60%)" }} />
+                <div className="absolute bottom-0 left-0 p-5">
                   <div className="flex flex-wrap gap-2">
                     {dest.tags.slice(0, 2).map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs px-2 py-0.5 rounded-md"
-                        style={{
-                          background: "rgba(0,0,0,0.4)",
-                          color: "oklch(80% 0.01 65)",
-                          backdropFilter: "blur(4px)",
-                        }}
-                      >
+                      <span key={tag} className="text-xs px-2 py-0.5 rounded-md" style={{ background: "rgba(0,0,0,0.5)", color: "oklch(85% 0.01 65)", backdropFilter: "blur(4px)" }}>
                         {tag}
                       </span>
                     ))}
@@ -102,12 +97,7 @@ export default function DestinationsPage() {
                 </div>
                 <div
                   className="absolute top-4 right-4 px-3 py-1.5 rounded-xl text-sm font-bold border"
-                  style={{
-                    background: "var(--color-amber-glow)",
-                    color: "var(--color-amber)",
-                    borderColor: "color-mix(in oklab, var(--color-amber) 30%, transparent)",
-                    backdropFilter: "blur(8px)",
-                  }}
+                  style={{ background: "var(--color-amber-glow)", color: "var(--color-amber)", borderColor: "color-mix(in oklab, var(--color-amber) 30%, transparent)", backdropFilter: "blur(8px)" }}
                 >
                   from ${dest.dailyBudget}/day
                 </div>

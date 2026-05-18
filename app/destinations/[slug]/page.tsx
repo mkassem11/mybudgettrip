@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, MapPin, Calendar, DollarSign, CheckCircle, ExternalLink } from "lucide-react";
 import { destinations, getDestination } from "@/lib/destinations";
 import { HotelDeals } from "@/components/deals/HotelDeals";
@@ -32,44 +33,42 @@ export default async function DestinationPage({ params }: Props) {
   const budgetTotal = Object.values(dest.budgetBreakdown).reduce((a, b) => a + b, 0);
 
   return (
-    <div className="pt-24 pb-24">
+    <div className="pt-16 pb-24">
       {/* ── Hero banner ──────────────────────────────────── */}
-      <div
-        className="relative overflow-hidden"
-        style={{
-          background: `linear-gradient(160deg, oklch(18% 0.04 72) 0%, var(--color-background) 70%)`,
-          minHeight: "360px",
-        }}
-      >
-        {/* Decorative glow */}
-        <div
-          className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[160px] opacity-20"
-          style={{ background: "var(--color-amber)" }}
+      <div className="relative overflow-hidden" style={{ minHeight: "480px" }}>
+        <Image
+          src={dest.coverImage}
+          alt={dest.name}
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
         />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.75) 100%)" }} />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-16">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-16 pt-24 flex flex-col justify-end" style={{ minHeight: "480px" }}>
           <Link
             href="/destinations"
             className="inline-flex items-center gap-2 text-sm mb-8 transition-colors hover:opacity-80"
-            style={{ color: "var(--color-muted)" }}
+            style={{ color: "rgba(255,255,255,0.7)" }}
           >
             <ArrowLeft className="w-4 h-4" /> All Destinations
           </Link>
 
           <div className="flex items-start gap-6">
-            <span className="text-7xl">{dest.emoji}</span>
+            <span className="text-6xl">{dest.emoji}</span>
             <div>
-              <div className="flex items-center gap-2 text-sm mb-3" style={{ color: "var(--color-muted)" }}>
+              <div className="flex items-center gap-2 text-sm mb-3" style={{ color: "rgba(255,255,255,0.7)" }}>
                 <MapPin className="w-4 h-4" />
                 {dest.country} · {dest.region}
               </div>
               <h1
-                className="text-5xl sm:text-6xl font-bold mb-4"
+                className="text-5xl sm:text-6xl font-bold mb-4 text-white"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {dest.name}
               </h1>
-              <p className="text-xl max-w-2xl leading-relaxed" style={{ color: "var(--color-muted)" }}>
+              <p className="text-xl max-w-2xl leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
                 {dest.tagline}
               </p>
 
@@ -79,9 +78,10 @@ export default async function DestinationPage({ params }: Props) {
                     key={tag}
                     className="text-xs px-3 py-1.5 rounded-full border"
                     style={{
-                      background: "var(--color-surface)",
-                      borderColor: "var(--color-border)",
-                      color: "var(--color-muted)",
+                      background: "rgba(255,255,255,0.15)",
+                      borderColor: "rgba(255,255,255,0.3)",
+                      color: "rgba(255,255,255,0.9)",
+                      backdropFilter: "blur(4px)",
                     }}
                   >
                     {tag}

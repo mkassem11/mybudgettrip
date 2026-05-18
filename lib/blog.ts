@@ -6,10 +6,24 @@ export interface BlogPost {
   readTime: number;
   excerpt: string;
   keywords: string[];
-  content: string; // HTML string
+  coverImage: string;
+  content: string;
 }
 
-export const blogPosts: BlogPost[] = [
+const CATEGORY_IMAGES: Record<string, string> = {
+  "Itineraries": "https://images.unsplash.com/photo-1476514525405-345ad4187883?w=800&auto=format&fit=crop&q=80",
+  "Destination Guides": "https://images.unsplash.com/photo-1503220317375-aca2eb610932?w=800&auto=format&fit=crop&q=80",
+  "Routes": "https://images.unsplash.com/photo-1516726817505-f5ed825624d8?w=800&auto=format&fit=crop&q=80",
+  "Budget Tips": "https://images.unsplash.com/photo-1467987506553-8f3916db7f2c?w=800&auto=format&fit=crop&q=80",
+  "Comparisons": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&auto=format&fit=crop&q=80",
+  "Flight & Price Tips": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&auto=format&fit=crop&q=80",
+  "Accommodation": "https://images.unsplash.com/photo-1555854512-29d759654285?w=800&auto=format&fit=crop&q=80",
+  "Remote Work & Travel": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&auto=format&fit=crop&q=80",
+  "Money & Banking": "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&auto=format&fit=crop&q=80",
+  "Solo Travel": "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&auto=format&fit=crop&q=80",
+};
+
+const rawBlogPosts: Omit<BlogPost, "coverImage">[] = [
   {
     slug: "7-days-georgia-200-dollars",
     title: "7 Days in Georgia on $200 — A Complete Backpacker Itinerary",
@@ -1076,6 +1090,11 @@ export const blogPosts: BlogPost[] = [
     `.trim(),
   },
 ];
+
+export const blogPosts: BlogPost[] = rawBlogPosts.map((p) => ({
+  ...p,
+  coverImage: CATEGORY_IMAGES[p.category] ?? CATEGORY_IMAGES["Itineraries"],
+}));
 
 export function getBlogPost(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug);

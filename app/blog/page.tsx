@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Clock, ArrowRight } from "lucide-react";
 import { blogPosts, blogCategories } from "@/lib/blog";
@@ -63,18 +64,23 @@ export default function BlogPage() {
           className="group flex flex-col md:flex-row gap-0 rounded-2xl overflow-hidden border mb-12 transition-all hover:shadow-2xl block"
           style={{ background: "var(--color-surface)", borderColor: "var(--color-border)" }}
         >
-          <div
-            className="md:w-2/5 h-56 md:h-auto flex items-end p-8"
-            style={{ background: "linear-gradient(135deg, oklch(18% 0.05 72), oklch(12% 0.02 252))", minHeight: "240px" }}
-          >
-            <div>
+          <div className="md:w-2/5 relative overflow-hidden" style={{ minHeight: "280px" }}>
+            <Image
+              src={featured.coverImage}
+              alt={featured.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 40vw"
+            />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 60%)" }} />
+            <div className="absolute bottom-0 left-0 p-6">
               <span
-                className="inline-block px-3 py-1 rounded-full text-xs font-bold mb-3"
+                className="inline-block px-3 py-1 rounded-full text-xs font-bold mb-2"
                 style={{ background: "var(--color-amber-glow)", color: "var(--color-amber)", border: "1px solid color-mix(in oklab, var(--color-amber) 30%, transparent)" }}
               >
                 Featured
               </span>
-              <div className="text-xs" style={{ color: "oklch(70% 0.01 65)" }}>{featured.category}</div>
+              <div className="text-xs text-white/70">{featured.category}</div>
             </div>
           </div>
           <div className="flex-1 p-8 flex flex-col justify-center">
@@ -110,19 +116,21 @@ export default function BlogPage() {
               className="group rounded-2xl overflow-hidden border transition-all duration-300 hover:scale-[1.02] hover:shadow-xl block"
               style={{ background: "var(--color-surface)", borderColor: "var(--color-border)" }}
             >
-              {/* Color header */}
-              <div
-                className="h-32 flex items-end p-5"
-                style={{
-                  background: `linear-gradient(135deg, oklch(16% 0.03 ${72 + (i * 25) % 180}) 0%, oklch(12% 0.02 252) 100%)`,
-                }}
-              >
-                <span
-                  className="text-xs px-2.5 py-1 rounded-full font-medium"
-                  style={{ background: "rgba(0,0,0,0.5)", color: "oklch(80% 0.01 65)", backdropFilter: "blur(4px)" }}
-                >
-                  {post.category}
-                </span>
+              {/* Photo header */}
+              <div className="h-44 relative overflow-hidden">
+                <Image
+                  src={post.coverImage}
+                  alt={post.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.05) 60%)" }} />
+                <div className="absolute bottom-0 left-0 p-4">
+                  <span className="text-xs px-2.5 py-1 rounded-full font-medium" style={{ background: "rgba(0,0,0,0.5)", color: "rgba(255,255,255,0.85)", backdropFilter: "blur(4px)" }}>
+                    {post.category}
+                  </span>
+                </div>
               </div>
 
               <div className="p-5">

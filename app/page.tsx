@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MapPin, Sparkles, Calculator, Plane, TrendingDown, Users, Star } from "lucide-react";
 import { budgetTips } from "@/lib/destinations";
@@ -13,6 +14,7 @@ const FEATURED_DESTINATIONS = [
     region: "Southeast Asia",
     dailyBudget: 25,
     emoji: "🇹🇭",
+    coverImage: "https://images.unsplash.com/photo-1528181304800-259b08848526?w=800&auto=format&fit=crop&q=80",
     tagline: "Stunning beaches, ancient temples, and legendary street food — all on a shoestring budget.",
     bestMonths: "Nov–Feb",
     tags: ["Beaches", "Street Food", "Culture"],
@@ -26,6 +28,7 @@ const FEATURED_DESTINATIONS = [
     region: "Southeast Asia",
     dailyBudget: 22,
     emoji: "🇻🇳",
+    coverImage: "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&auto=format&fit=crop&q=80",
     tagline: "Halong Bay, Hoi An lanterns, and pho for $1.50. Vietnam defies every budget.",
     bestMonths: "Feb–Apr",
     tags: ["Scenery", "Food", "History"],
@@ -39,6 +42,7 @@ const FEATURED_DESTINATIONS = [
     region: "Caucasus",
     dailyBudget: 30,
     emoji: "🇬🇪",
+    coverImage: "https://images.unsplash.com/photo-1565008887967-afbd4d41edec?w=800&auto=format&fit=crop&q=80",
     tagline: "Free wine, dramatic mountains, and one of Europe's most charming old towns.",
     bestMonths: "May–Oct",
     tags: ["Wine", "Mountains", "History"],
@@ -52,6 +56,7 @@ const FEATURED_DESTINATIONS = [
     region: "Balkans",
     dailyBudget: 28,
     emoji: "🇦🇱",
+    coverImage: "https://images.unsplash.com/photo-1580137189272-c9379f8864fd?w=800&auto=format&fit=crop&q=80",
     tagline: "Europe's last undiscovered gem — Riviera beaches and Ottoman bazaars for next to nothing.",
     bestMonths: "Jun–Sep",
     tags: ["Beaches", "History", "Off-the-beaten-path"],
@@ -65,6 +70,7 @@ const FEATURED_DESTINATIONS = [
     region: "Eurasia",
     dailyBudget: 35,
     emoji: "🇹🇷",
+    coverImage: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=800&auto=format&fit=crop&q=80",
     tagline: "A city on two continents — world-class food, grand mosques, and bazaars that never end.",
     bestMonths: "Apr–Jun",
     tags: ["History", "Food", "Culture"],
@@ -78,6 +84,7 @@ const FEATURED_DESTINATIONS = [
     region: "Southeast Asia",
     dailyBudget: 32,
     emoji: "🇮🇩",
+    coverImage: "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=800&auto=format&fit=crop&q=80",
     tagline: "Rice terraces, surf breaks, and spiritual temples — Bali rewards the patient budget traveler.",
     bestMonths: "May–Sep",
     tags: ["Beaches", "Temples", "Surf"],
@@ -264,17 +271,25 @@ export default function HomePage() {
                 className="group rounded-2xl overflow-hidden border transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl block"
                 style={{ background: "var(--color-surface)", borderColor: "var(--color-border)" }}
               >
-                <div
-                  className="h-44 relative flex items-end p-5"
-                  style={{ background: `linear-gradient(160deg, ${dest.gradient} 0%, oklch(10% 0.015 252) 100%)` }}
-                >
-                  <span className="text-5xl">{dest.emoji}</span>
+                <div className="h-44 relative overflow-hidden">
+                  <Image
+                    src={dest.coverImage}
+                    alt={dest.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.05) 60%)" }} />
+                  <div className="absolute bottom-4 left-4">
+                    <span className="text-4xl">{dest.emoji}</span>
+                  </div>
                   <div
                     className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold border"
                     style={{
                       background: "var(--color-amber-glow)",
                       color: "var(--color-amber)",
                       borderColor: "color-mix(in oklab, var(--color-amber) 25%, transparent)",
+                      backdropFilter: "blur(8px)",
                     }}
                   >
                     from ${dest.dailyBudget}/day

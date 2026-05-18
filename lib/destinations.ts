@@ -9,6 +9,7 @@ export interface Destination {
   description: string;
   heroGradient: string;
   emoji: string;
+  coverImage: string;
   tags: string[];
   highlights: string[];
   iataCode: string;       // for flight price API
@@ -32,6 +33,7 @@ export const destinations: Destination[] = [
     region: "Caucasus",
     dailyBudget: 30,
     currency: "GEL",
+    coverImage: "https://images.unsplash.com/photo-1565008887967-afbd4d41edec?w=1200&auto=format&fit=crop&q=80",
     tagline: "Ancient city, modern soul — one of the cheapest gems in Europe",
     description:
       "Tbilisi blends ancient Silk Road history with a thriving arts scene, incredible wine culture, and jaw-dropping architecture — all at prices that make Western Europe look absurd.",
@@ -63,6 +65,7 @@ export const destinations: Destination[] = [
     region: "Middle East / Europe",
     dailyBudget: 35,
     currency: "TRY",
+    coverImage: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=1200&auto=format&fit=crop&q=80",
     tagline: "Two continents, one city — and it's astonishingly affordable",
     description:
       "Istanbul sits at the crossroads of Europe and Asia with 3,000 years of history, world-class food, and a street food scene that can fill you up for under $2. The lira makes it a bargain for travellers.",
@@ -94,6 +97,7 @@ export const destinations: Destination[] = [
     region: "Balkans",
     dailyBudget: 28,
     currency: "BAM",
+    coverImage: "https://images.unsplash.com/photo-1555990538-c21f9a57d763?w=1200&auto=format&fit=crop&q=80",
     tagline: "The most underrated city in the Balkans, bar none",
     description:
       "Sarajevo is where East meets West — Ottoman bazaars blend into Austro-Hungarian boulevards, and the most moving history sits beside the best ćevapi you'll ever eat. It's dirt cheap and deeply authentic.",
@@ -125,6 +129,7 @@ export const destinations: Destination[] = [
     region: "Balkans",
     dailyBudget: 25,
     currency: "BGN",
+    coverImage: "https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=1200&auto=format&fit=crop&q=80",
     tagline: "EU capital with Eastern European prices",
     description:
       "Sofia is Europe's best-kept secret — a compact, walkable capital with Roman ruins, Ottoman mosques, Soviet-era architecture, and a buzzing craft beer scene, all for under €25/day.",
@@ -156,6 +161,7 @@ export const destinations: Destination[] = [
     region: "Caucasus",
     dailyBudget: 28,
     currency: "AMD",
+    coverImage: "https://images.unsplash.com/photo-1589656966895-2f33e7653819?w=1200&auto=format&fit=crop&q=80",
     tagline: "The pink city of the Caucasus — welcoming, warm, and incredibly cheap",
     description:
       "Built from pink volcanic tuff stone, Yerevan is one of the world's oldest continuously inhabited cities. Its cascade stairs, Ararat views, and obsession with coffee make it instantly lovable.",
@@ -187,6 +193,7 @@ export const destinations: Destination[] = [
     region: "Southeast Asia",
     dailyBudget: 25,
     currency: "THB",
+    coverImage: "https://images.unsplash.com/photo-1528181304800-259b08848526?w=1200&auto=format&fit=crop&q=80",
     tagline: "Temples, beaches, and street food so good it'll ruin you for home cooking",
     description:
       "Thailand is Southeast Asia's ultimate budget destination — a country where $25/day gets you a private guesthouse room, three meals of exceptional food, and entry to ancient temples. From the frenetic streets of Bangkok to the island-hopping south, Thailand rewards the budget traveler at every turn.",
@@ -218,6 +225,7 @@ export const destinations: Destination[] = [
     region: "Southeast Asia",
     dailyBudget: 22,
     currency: "VND",
+    coverImage: "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1200&auto=format&fit=crop&q=80",
     tagline: "Ha Long Bay to Hoi An — a $20/day country that punches far above its weight",
     description:
       "Vietnam is one of the world's great travel experiences — a narrow country with stunning geographic diversity, 4,000 years of history, and food so good it has a global cult following. Best of all, it remains one of Southeast Asia's cheapest destinations.",
@@ -249,6 +257,7 @@ export const destinations: Destination[] = [
     region: "Southeast Asia",
     dailyBudget: 32,
     currency: "IDR",
+    coverImage: "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=1200&auto=format&fit=crop&q=80",
     tagline: "Temples, rice terraces, and surf — Bali rewards those who explore beyond the tourist trail",
     description:
       "Bali is Indonesia's jewel — a tiny island with a unique Hindu culture, volcanic landscapes, world-class surf, and a remarkably intact spiritual tradition. Stay in Canggu or Ubud instead of Seminyak and your dollar goes twice as far.",
@@ -280,6 +289,7 @@ export const destinations: Destination[] = [
     region: "Balkans",
     dailyBudget: 32,
     currency: "Mixed",
+    coverImage: "https://images.unsplash.com/photo-1516726817505-f5ed825624d8?w=1200&auto=format&fit=crop&q=80",
     tagline: "The ultimate backpacker route through Europe's wildest corner",
     description:
       "Chain together Slovenia, Croatia, Bosnia, Montenegro, Albania, and North Macedonia for an epic loop of mountains, coastlines, ancient cities, and some of the cheapest food on the continent.",

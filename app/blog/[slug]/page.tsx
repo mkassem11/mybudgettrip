@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Clock, Calendar, Tag } from "lucide-react";
@@ -32,49 +33,50 @@ export default async function BlogPostPage({ params }: Props) {
   const related = blogPosts.filter((p) => p.category === post.category && p.slug !== post.slug).slice(0, 3);
 
   return (
-    <div className="pt-24 pb-24">
-      {/* Hero */}
-      <div
-        className="py-16 px-4 sm:px-6 mb-12"
-        style={{ background: "linear-gradient(160deg, oklch(16% 0.04 72) 0%, var(--color-background) 60%)" }}
-      >
-        <div className="max-w-3xl mx-auto">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-sm mb-8 transition-colors"
-            style={{ color: "var(--color-muted)" }}
-          >
-            <ArrowLeft className="w-4 h-4" /> All Posts
-          </Link>
-          <div className="flex items-center gap-3 mb-5">
-            <span
-              className="px-3 py-1 rounded-full text-xs font-bold border"
-              style={{
-                background: "var(--color-amber-glow)",
-                borderColor: "color-mix(in oklab, var(--color-amber) 30%, transparent)",
-                color: "var(--color-amber)",
-              }}
+    <div className="pt-16 pb-24">
+      {/* Hero image */}
+      <div className="relative overflow-hidden" style={{ height: "420px" }}>
+        <Image
+          src={post.coverImage}
+          alt={post.title}
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%)" }} />
+        <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-6 pb-10">
+          <div className="max-w-3xl mx-auto">
+            <Link href="/blog" className="inline-flex items-center gap-2 text-sm mb-6 text-white/70 hover:text-white transition-colors">
+              <ArrowLeft className="w-4 h-4" /> All Posts
+            </Link>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="px-3 py-1 rounded-full text-xs font-bold border" style={{ background: "var(--color-amber-glow)", borderColor: "color-mix(in oklab, var(--color-amber) 30%, transparent)", color: "var(--color-amber)" }}>
+                {post.category}
+              </span>
+              <div className="flex items-center gap-1.5 text-xs text-white/60">
+                <Clock className="w-3.5 h-3.5" /> {post.readTime} min read
+              </div>
+              <div className="flex items-center gap-1.5 text-xs text-white/60">
+                <Calendar className="w-3.5 h-3.5" />
+                {new Date(post.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+              </div>
+            </div>
+            <h1
+              className="text-3xl sm:text-5xl font-bold text-white"
+              style={{ fontFamily: "var(--font-display)" }}
             >
-              {post.category}
-            </span>
-            <div className="flex items-center gap-1.5 text-xs" style={{ color: "var(--color-muted)" }}>
-              <Clock className="w-3.5 h-3.5" /> {post.readTime} min read
-            </div>
-            <div className="flex items-center gap-1.5 text-xs" style={{ color: "var(--color-muted)" }}>
-              <Calendar className="w-3.5 h-3.5" />
-              {new Date(post.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
-            </div>
+              {post.title}
+            </h1>
           </div>
-          <h1
-            className="text-4xl sm:text-5xl font-bold mb-6"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            {post.title}
-          </h1>
-          <p className="text-lg leading-relaxed" style={{ color: "var(--color-muted)" }}>
-            {post.excerpt}
-          </p>
         </div>
+      </div>
+
+      {/* Excerpt */}
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 mt-10 mb-4">
+        <p className="text-lg leading-relaxed" style={{ color: "var(--color-muted)" }}>
+          {post.excerpt}
+        </p>
       </div>
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
