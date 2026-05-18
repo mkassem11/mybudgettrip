@@ -1,26 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap");
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* ── Brand Palette ────────────────────────────── */
+  --color-background:   oklch(11% 0.018 252);
+  --color-surface:      oklch(14.5% 0.018 252);
+  --color-surface-2:    oklch(18% 0.018 252);
+  --color-border:       oklch(25% 0.015 252);
+  --color-foreground:   oklch(96% 0.006 65);
+  --color-muted:        oklch(55% 0.012 252);
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Amber / golden sunset — primary accent */
+  --color-amber:        oklch(76% 0.165 72);
+  --color-amber-dim:    oklch(65% 0.14 72);
+  --color-amber-glow:   color-mix(in oklab, oklch(76% 0.165 72) 15%, transparent);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Teal / ocean — secondary accent */
+  --color-teal:         oklch(68% 0.13 196);
+  --color-teal-dim:     oklch(58% 0.11 196);
+  --color-teal-glow:    color-mix(in oklab, oklch(68% 0.13 196) 15%, transparent);
+
+  /* Coral — CTA / affiliate */
+  --color-coral:        oklch(66% 0.18 30);
+  --color-coral-dim:    oklch(58% 0.16 30);
+
+  /* ── Typography ───────────────────────────────── */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body:    "Inter", system-ui, sans-serif;
+
+  /* ── Radius ───────────────────────────────────── */
+  --radius-sm:   0.25rem;
+  --radius-md:   0.5rem;
+  --radius-lg:   1rem;
+  --radius-xl:   1.5rem;
+  --radius-full: 9999px;
+
+  /* ── Animations ───────────────────────────────── */
+  --animate-fade-up: fade-up 0.6s ease-out both;
+  --animate-fade-in: fade-in 0.4s ease-out both;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position:  200% center; }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── Base ──────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    line-height: 1.2;
+  }
+
+  ::selection {
+    background-color: var(--color-amber-glow);
+    color: var(--color-amber);
+  }
+}
+
+/* ── Custom Utilities ──────────────────────────────── */
+@utility text-gradient-amber {
+  background: linear-gradient(135deg, oklch(76% 0.165 72), oklch(66% 0.18 30));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility text-gradient-teal {
+  background: linear-gradient(135deg, oklch(68% 0.13 196), oklch(65% 0.165 155));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility glass-card {
+  background: color-mix(in oklab, var(--color-surface) 80%, transparent);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+}
+
+/* ── Blog article prose ────────────────────────────── */
+.prose-budget h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-foreground);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+
+.prose-budget h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-foreground);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-budget p {
+  margin-bottom: 1.25rem;
+}
+
+.prose-budget ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.prose-budget ul li {
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  position: relative;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.prose-budget ul li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--color-amber);
+  font-weight: 700;
+}
+
+.prose-budget li:last-child {
+  border-bottom: none;
+}
+
+.prose-budget strong {
+  color: var(--color-foreground);
+  font-weight: 600;
+}
+
+.prose-budget em {
+  color: var(--color-amber);
+  font-style: normal;
+  font-weight: 500;
 }
