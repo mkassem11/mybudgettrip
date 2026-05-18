@@ -33,7 +33,7 @@ export const destinations: Destination[] = [
     region: "Caucasus",
     dailyBudget: 30,
     currency: "GEL",
-    coverImage: "https://images.unsplash.com/photo-1565008887967-afbd4d41edec?w=1200&auto=format&fit=crop&q=80",
+    coverImage: "https://images.unsplash.com/photo-1603698873304-b052340d9719?w=1200&auto=format&fit=crop&q=80",
     tagline: "Ancient city, modern soul — one of the cheapest gems in Europe",
     description:
       "Tbilisi blends ancient Silk Road history with a thriving arts scene, incredible wine culture, and jaw-dropping architecture — all at prices that make Western Europe look absurd.",
@@ -97,7 +97,7 @@ export const destinations: Destination[] = [
     region: "Balkans",
     dailyBudget: 28,
     currency: "BAM",
-    coverImage: "https://images.unsplash.com/photo-1555990538-c21f9a57d763?w=1200&auto=format&fit=crop&q=80",
+    coverImage: "https://images.unsplash.com/photo-1709636713996-8fdd5884b8b9?w=1200&auto=format&fit=crop&q=80",
     tagline: "The most underrated city in the Balkans, bar none",
     description:
       "Sarajevo is where East meets West — Ottoman bazaars blend into Austro-Hungarian boulevards, and the most moving history sits beside the best ćevapi you'll ever eat. It's dirt cheap and deeply authentic.",

@@ -42,7 +42,7 @@ const FEATURED_DESTINATIONS = [
     region: "Caucasus",
     dailyBudget: 30,
     emoji: "🇬🇪",
-    coverImage: "https://images.unsplash.com/photo-1565008887967-afbd4d41edec?w=800&auto=format&fit=crop&q=80",
+    coverImage: "https://images.unsplash.com/photo-1603698873304-b052340d9719?w=800&auto=format&fit=crop&q=80",
     tagline: "Free wine, dramatic mountains, and one of Europe's most charming old towns.",
     bestMonths: "May–Oct",
     tags: ["Wine", "Mountains", "History"],
